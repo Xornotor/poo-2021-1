@@ -1,5 +1,3 @@
-package fixacao01;
-
 import java.lang.String;
 import java.util.Scanner;
 
