@@ -129,13 +129,14 @@ public class Doador{
 	}
 
 	//REMOVER DOACAO
-	public boolean removerDoacao(int ref){
-		if(ref >= 0 && ref < this.doacoes.size()){
-			this.doacoes.remove(ref);
-			return true;
-		}else{
-			return false;
+	public boolean removerDoacao(int num_protocolo){
+		for(int i = 0; i < this.doacoes.size(); i++){
+			if(this.doacoes.get(i).getProtocolo() == num_protocolo){
+				this.doacoes.remove(i);
+				return true;
+			}
 		}
+		return false;
 	}
 
 	//ALTERAR DOACAO

@@ -1,9 +1,10 @@
 import java.lang.String;
 
 public class Doacao{
+	static private int contador_protocolo = 12345;
 	private Doador doador;
     private String tipo_doacao, descricao_doacao, estado_doacao;
-	private int quantidade;
+	private int quantidade, protocolo;
 	private boolean pode_ser_entregue;
 
 	public Doacao(Doador doador, String tipo_doacao, String descricao_doacao, String estado_doacao, int quantidade, boolean pode_ser_entregue){
@@ -13,6 +14,8 @@ public class Doacao{
         this.estado_doacao = estado_doacao;
         this.quantidade = quantidade;
         this.pode_ser_entregue = pode_ser_entregue;
+		this.protocolo = contador_protocolo;
+		contador_protocolo += 127;
 	}
 
 	//GETS
@@ -39,6 +42,10 @@ public class Doacao{
 
 	public boolean getEntrega(){
 		return this.pode_ser_entregue;
+	}
+
+	public int getProtocolo(){
+		return this.protocolo;
 	}
 
 	//SETS
