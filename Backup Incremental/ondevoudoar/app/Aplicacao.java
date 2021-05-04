@@ -1,4 +1,9 @@
+package ondevoudoar.app;
+
 import java.util.Scanner;
+
+import ondevoudoar.classes.Doador;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,13 +13,13 @@ public class Aplicacao {
     public static void main(String args[]) throws ParseException{
         int option;
         boolean finish = false;
-        String nome, tipo, cpf_cnpj, data_string, rua, complemento, bairro;
-	    int numero;
+        String nome, tipo, cpf_cnpj, data_string, endereco;
+	    int telefone;
 	    Date data_nascimento;
         Scanner sc = new Scanner(System.in);
         System.out.println("Doador, digite seu nome: ");
         nome = sc.nextLine();
-        System.out.println("VocÃª Ã© pessoa fÃ­sica ou jurÃ­dica? ");
+        System.out.println("Você é pessoa física ou jurídica? ");
         tipo = sc.nextLine();
         System.out.println("Digite seu CPF ou CNPJ: ");
         cpf_cnpj = sc.nextLine();
@@ -22,35 +27,30 @@ public class Aplicacao {
         data_string = sc.nextLine();
         DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
         data_nascimento = dateformat.parse(data_string);
-        System.out.println("Digite o nome da sua rua: ");
-        rua = sc.nextLine();
-        System.out.println("Digite o nÃºmero da sua casa: ");
-        numero = sc.nextInt();
-        System.out.println("Digite o complemento do seu endereÃ§o: ");
-        complemento = sc.nextLine();
-        System.out.println("Digite o nome do seu bairro: ");
-        bairro = sc.nextLine();
-        Doador doador = new Doador(nome, tipo, cpf_cnpj, data_nascimento, rua, numero, complemento, bairro);
+        System.out.println("Digite o seu endereço: ");
+        endereco = sc.nextLine();
+        System.out.println("Digite seu telefone: ");
+        telefone = sc.nextInt();
+        Doador doador = new Doador(nome, tipo, cpf_cnpj, data_nascimento, endereco, telefone);
 
         String tipo_tmp, descricao_tmp, estado_tmp, entrega_tmp;
         int qtd_tmp;
         boolean bool_entrega_tmp;
 
         while(true){
-            System.out.println("1 - Adicionar doaÃ§Ã£o");
-            System.out.println("2 - Remover doaÃ§Ã£o");
-            System.out.println("3 - Listar DoaÃ§Ãµes");
-            System.out.println("4 - Encerrar aplicaÃ§Ã£o");
-            System.out.println("Selecione a aÃ§Ã£o desejada: ");
+            System.out.println("1 - Adicionar doação");
+            System.out.println("2 - Remover doação");
+            System.out.println("3 - Listar doações");
+            System.out.println("4 - Encerrar aplicação");
+            System.out.println("Selecione a ação desejada: ");
             option = sc.nextInt();
             switch(option){
                 case 1:
-                //Doador doador, String tipo_doacao, String descricao_doacao, String estado_doacao, int quantidade, boolean pode_ser_entregue
-                    System.out.println("Digite o tipo da doaÃ§Ã£o: ");
+                    System.out.println("Digite o tipo da doação: ");
                     tipo_tmp = sc.nextLine();
-                    System.out.println("Digite a descriÃ§Ã£o da doaÃ§Ã£o: ");
+                    System.out.println("Digite a descrição da doação: ");
                     descricao_tmp = sc.nextLine();
-                    System.out.println("Digite o estado da doaÃ§Ã£o: ");
+                    System.out.println("Digite o estado da doação: ");
                     estado_tmp = sc.nextLine();
                     System.out.println("Digite a quantidade de itens: ");
                     qtd_tmp = sc.nextInt();
@@ -64,12 +64,12 @@ public class Aplicacao {
                     doador.adicionarDoacao(tipo_tmp, descricao_tmp, estado_tmp, qtd_tmp, bool_entrega_tmp);
                     break;
                 case 2:
-                    System.out.println("Digite o nÃºmero do protocolo da doaÃ§Ã£o que deseja remover: ");
+                    System.out.println("Digite o número do protocolo da doação que deseja remover: ");
                     int prot = sc.nextInt();
                     if(doador.removerDoacao(prot)){
-                        System.out.println("RemoÃ§Ã£o efetuada com sucesso.");
+                        System.out.println("Remoção efetuada com sucesso.");
                     }else{
-                        System.out.println("NÃºmero de protocolo nÃ£o encontrado.");
+                        System.out.println("Número de protocolo não encontrado.");
                     }
                 case 3:
                     doador.listarDoacoes();
@@ -78,7 +78,7 @@ public class Aplicacao {
                     finish = true;
                     break;
                 default:
-                    System.out.println("OpÃ§Ã£o invÃ¡lida. Tente novamente.");
+                    System.out.println("Opção inválida. Tente novamente.");
             }
             if(finish){
                 break;

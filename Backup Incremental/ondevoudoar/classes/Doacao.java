@@ -1,3 +1,5 @@
+package ondevoudoar.classes;
+
 import java.lang.String;
 
 public class Doacao{
@@ -74,15 +76,15 @@ public class Doacao{
 		this.pode_ser_entregue = nova_entrega;
 	}
 
-    //TAMANHO DA DOA√á√ÉO
+    //TAMANHO DA DOA«√O
 
     public void tamanhoDoacao(){
         if(this.quantidade < 20){
-            System.out.println("Doa√ß√£o pequena");
+            System.out.println("DoaÁ„o pequena");
         }else if(this.quantidade >= 20 && this.quantidade <= 50){
-            System.out.println("Doa√ß√£o m√©dia");
+            System.out.println("DoaÁ„o mÈdia");
         }else{
-            System.out.println("Doa√ß√£o grande");
+            System.out.println("DoaÁ„o grande");
         }
     }
 }

@@ -1,120 +1,26 @@
+package ondevoudoar.classes;
+
 import java.util.Date;
-import java.util.Calendar;
 import java.lang.String;
 import java.util.ArrayList;
 
-public class Doador{
-	private String nome, tipo, cpf_cnpj, rua, complemento, bairro;
-	private int numero;
-	private Date data_nascimento;
+public class Doador extends Pessoa{
 	private ArrayList<Doacao> doacoes;
 
-	public Doador(String name, String type, String id, Date birth, String street, int num, String comp, String district){
-		this.nome = name;
-		this.tipo = type;
-		this.cpf_cnpj = id;
-		this.data_nascimento = birth;
-		this.rua = street;
-		this.numero = num;
-		this.complemento = comp;
-		this.bairro = district;
-		this.doacoes = new ArrayList();
+	public Doador(String name, String type, String id, Date birth, String address, int phone){
+		super(name, type, id, birth, address, phone);
+		this.doacoes = new ArrayList<Doacao>();
 	}
 
-	//GETS
-
-	public String getNome(){
-		return this.nome;
-	}
-
-	public String getTipo(){
-		return this.tipo;
-	}
-
-	public String getId(){
-		return this.cpf_cnpj;
-	}
-
-	public String getRua(){
-		return this.rua;
-	}
-
-	public String getComplemento(){
-		return this.complemento;
-	}
-
-	public String getBairro(){
-		return this.bairro;
-	}
-
-	public int getNumero(){
-		return this.numero;
-	}
-
-	public Date getDataNascimento(){
-		return this.data_nascimento;
-	}
-
-	//SETS
-
-	public void setNome(String name){
-		this.nome = name;
-	}
-
-	public void setTipo(String type){
-		this.tipo = type;
-	}
-
-	public void setId(String id){
-		this.cpf_cnpj = id;
-	}
-
-	public void setRua(String street){
-		this.rua = street;
-	}
-
-	public void setComplemento(String comp){
-		this.complemento = comp;
-	}
-
-	public void setBairro(String district){
-		this.bairro = district;
-	}
-
-	public void setNumero(int num){
-		this.numero = num;
-	}
-
-	public void setDataNascimento(Date birth){
-		this.data_nascimento = birth;
-	}
 
 	//LER DOADOR
 
-	public void lerDoador(){
-		if(this.tipo == "JURIDICA"){
-			System.out.println("M√©todo Inv√°lido. O doador √© uma pessoa jur√≠dica.");
+	@Override
+	public void verificaPessoaEIdade(){
+		if(super.getTipo().equals("JURIDICA")){
+			System.out.println("MÈtodo Inv·lido. Doador È pessoa jurÌdica.");
 		}else{
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(this.data_nascimento);
-			Calendar now = Calendar.getInstance();
-			now.setTime(new Date());
-            int anoNascimento = cal.get(Calendar.YEAR);
-			int mesNascimento = cal.get(Calendar.MONTH);
-			int diaNascimento = cal.get(Calendar.DAY_OF_MONTH);
-			int anoAtual = now.get(Calendar.YEAR);
-			int mesAtual = now.get(Calendar.MONTH);
-			int diaAtual = now.get(Calendar.DAY_OF_MONTH);
-
-            int idade = anoAtual - anoNascimento;
-            if (mesNascimento < mesAtual){
-                idade--;
-            } else {
-        		if(mesNascimento == mesAtual && diaNascimento < diaAtual){
-                	idade--;
-                }
-            }
-			if(idade >= 18){
+			if(maiorDeIdade()){
 				System.out.println("Doador maior de idade");
 			}else{
 				System.out.println("Doador menor de idade");
@@ -211,9 +117,9 @@ public class Doador{
 			estado_doacao = this.doacoes.get(i).getEstado();
 			quantidade = this.doacoes.get(i).getQuantidade();
 			pode_ser_entregue = this.doacoes.get(i).getEntrega();
-			System.out.println("Tipo de doa√ß√£o: " + tipo_doacao);
-			System.out.println("Descri√ß√£o da doa√ß√£o: " + descricao_doacao);
-			System.out.println("Estado da doa√ß√£o: " + estado_doacao);
+			System.out.println("Tipo de doaÁ„o: " + tipo_doacao);
+			System.out.println("DescriÁ„o da doa√ß√£o: " + descricao_doacao);
+			System.out.println("Estado da doaÁ„o: " + estado_doacao);
 			System.out.println("Quantidade: " + quantidade);
 			System.out.println("Pode ser entregue? " + pode_ser_entregue);
 			System.out.println();
